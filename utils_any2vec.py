@@ -61,7 +61,7 @@ def _is_utf8_continue(b):
 
 
 try:
-    from gensim.models._utils_any2vec import (
+    from mallet_wrapper._utils_any2vec import (
         compute_ngrams,
         compute_ngrams_bytes,
         ft_hash_broken,

@@ -179,7 +179,7 @@ from mallet_wrapper.dictionary import Dictionary
 from six import string_types, integer_types
 from six.moves import zip, range
 from scipy import stats
-from gensim.utils import deprecated
+from mallet_wrapper.utils import deprecated
 from mallet_wrapper.utils_any2vec import (
     _save_word2vec_format,
     _load_word2vec_format,
