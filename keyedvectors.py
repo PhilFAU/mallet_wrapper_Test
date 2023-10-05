@@ -180,17 +180,17 @@ from six import string_types, integer_types
 from six.moves import zip, range
 from scipy import stats
 from gensim.utils import deprecated
-from gensim.models.utils_any2vec import (
+from mallet_wrapper.utils_any2vec import (
     _save_word2vec_format,
     _load_word2vec_format,
     ft_ngram_hashes,
 )
-from gensim.similarities.termsim import TermSimilarityIndex, SparseTermSimilarityMatrix
+from mallet_wrapper.termsim import TermSimilarityIndex, SparseTermSimilarityMatrix
 
 #
 # For backwards compatibility, see https://github.com/RaRe-Technologies/gensim/issues/2201
 #
-from gensim.models.deprecated.keyedvectors import EuclideanKeyedVectors  # noqa
+from mallet_wrapper.deprecated.keyedvectors import EuclideanKeyedVectors  # noqa
 
 logger = logging.getLogger(__name__)
 
