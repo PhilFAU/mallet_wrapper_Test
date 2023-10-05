@@ -168,49 +168,8 @@ def topic_training_mallet_new(corpus_dictionary, name_dataset, user, topics, mal
     warnings.filterwarnings("ignore", category=DeprecationWarning)
     # Aus dem top_dic werden die einzelenen Tokens Listen ausgelesen.
 
-    if type(corpus_dictionary) is not dict:
-        top_dic = json.loads(corpus_dictionary)
-    else:
-        top_dic = corpus_dictionary
+    id2word = corpora.Dictionary(dataset)
 
-    if chunking == True:
-
-        chunk_data = []
-        for a in top_dic["korpus"]:
-            for i in top_dic["korpus"][a]:
-                chunk_count = 1
-                chunk_text = []
-                for n in range(1, (len(top_dic["korpus"][a][i]["sent"]) + 1)):
-                    n = str(n)
-                    if top_dic["korpus"][a][i]["sent"][n]["chunk"] == chunk_count:
-                        chunk_text += top_dic["korpus"][a][i]["sent"][n]["cleaned"]
-                        if n == str((len(top_dic["korpus"][a][i]["sent"]))):
-                            chunk_data += [[i + " chunk_" + str(chunk_count), chunk_text]]
-
-                    else:
-                        chunk_data += [[i + " chunk_" + str(chunk_count), chunk_text]]
-                        chunk_count += 1
-                        chunk_text = []
-                        chunk_text += top_dic["korpus"][a][i]["sent"][n]["cleaned"]
-        dataset = []
-        for i in chunk_data:
-            dataset += [i[1]]
-
-    if chunking == False:
-
-        chunk_data = []
-        for a in top_dic["korpus"]:
-            for i in top_dic["korpus"][a]:
-                for n in top_dic["korpus"][a][i]["sent"]:
-                    cleaned_text = top_dic["korpus"][a][i]["sent"][n]["cleaned"]
-                    chunk_data.append([i, cleaned_text])
-        dataset = []
-        for i in chunk_data:
-            dataset += [i[1]]
-
-
-
-    id2word = Dictionary(dataset)
     corpus = [id2word.doc2bow(text) for text in dataset]
 
     lda_model_mallet = LdaMallet(mallet_path, corpus=corpus, id2word=id2word,
