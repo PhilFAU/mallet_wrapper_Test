@@ -157,6 +157,7 @@ def topic_training_mallet_new(corpus_dictionary, name_dataset, user, topics, mal
     from mallet_wrapper import coherencemodel
     from mallet_wrapper.ldamallet import LdaMallet
     from mallet_wrapper.coherencemodel import CoherenceModel
+    from mallet_wrapper.dictionary import Dictionary
     import os
     from datetime import datetime
     import pandas as pd
