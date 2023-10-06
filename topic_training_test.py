@@ -169,7 +169,7 @@ def topic_training_mallet_new(corpus_dictionary, name_dataset, user, topics, mal
     warnings.filterwarnings("ignore", category=DeprecationWarning)
     # Aus dem top_dic werden die einzelenen Tokens Listen ausgelesen.
 
-    id2word = corpora.Dictionary(dataset)
+    id2word = Dictionary(dataset)
 
     corpus = [id2word.doc2bow(text) for text in dataset]
 
