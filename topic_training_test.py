@@ -166,20 +166,14 @@ def topic_training_mallet_new(corpus_dictionary, name_dataset, user, topics, mal
 
     import warnings
 
-    warnings.filterwarnings("ignore", category=DeprecationWarning)
-    # Aus dem top_dic werden die einzelenen Tokens Listen ausgelesen.
-
-    id2word = Dictionary(dataset)
+    id2word = corpora.Dictionary(dataset)
 
     corpus = [id2word.doc2bow(text) for text in dataset]
 
-    lda_model_mallet = LdaMallet(mallet_path, corpus=corpus, id2word=id2word,
+    lda_model_mallet = gensim.models.wrappers.ldamallet.LdaMallet(mallet_path, corpus=corpus, id2word=id2word,
                                                                   num_topics=topics, iterations=iterations_mallet,
                                                                   optimize_interval=optimize_interval_mallet,
                                                                   random_seed=random_seed_mallet)
-
-
-
 
     ## Daten-Output Mallet konvertieren
 
@@ -213,50 +207,6 @@ def topic_training_mallet_new(corpus_dictionary, name_dataset, user, topics, mal
     coherence_model_ldamallet = CoherenceModel(model=lda_model_mallet,
                                                texts=dataset, dictionary=id2word, coherence='c_v')
     coherence_ldamallet = coherence_model_ldamallet.get_coherence()
-
-    # es wird das finale dic erstellt mit den drei Kategorien "korpus" = alle Interviews; "weight" = Chunk weight Werte; "words" = Wortlisten der Topics
-    # vereinfachen möglich! siehe Gespräch mit Dennis
-
-    for i in range(len(doc_tops_mallet)):
-        if chunk_data[i][0].split(" ")[0][:3] not in top_dic["weight"]:
-            top_dic["weight"][chunk_data[i][0].split(" ")[0][:3]] = {}
-        if chunk_data[i][0].split(" ")[0] not in top_dic["weight"][chunk_data[i][0].split(" ")[0][:3]]:
-            top_dic["weight"][chunk_data[i][0].split(" ")[0][:3]][chunk_data[i][0].split(" ")[0]] = {}
-        if chunk_data[i][0].split("_")[1] not in top_dic["weight"][chunk_data[i][0].split(" ")[0][:3]][
-            chunk_data[i][0].split(" ")[0]]:
-            top_dic["weight"][chunk_data[i][0].split(" ")[0][:3]][chunk_data[i][0].split(" ")[0]][
-                chunk_data[i][0].split("_")[1]] = {}
-        for a in doc_tops_mallet[i]:
-            top_dic["weight"][chunk_data[i][0].split(" ")[0][:3]][chunk_data[i][0].split(" ")[0]][
-                chunk_data[i][0].split("_")[1]][a[0]] = a[1]
-
-    # Zuerst werden die Ergebnislisten aus top_words_mallet getrennt, da sie in einer Kette mit "+" aneinandergedliedert sind. (0.000*"zetteln" + 0.000*"salonsozialisten") und an word_list_splittet übergeben
-    # anschließend wird das Wort*Wert geflecht getrennt und als Tupel (Wert, Wort) passend zu seinem Topic dem dic übergeben.
-
-
-    word_list_splitted = []
-    for i in topwords_mallet:
-        word_list_splitted += [(i[0], i[1].split("+"))]
-    for a in word_list_splitted:
-        word_weight_splitted = []
-        for b in a[1]:
-            c = float(b.split("*")[0])
-            d = ((b.split("*")[1]).split('"')[1::2])[0]
-            word_weight_splitted += [(c, d)]
-        top_dic["words"][a[0]] = word_weight_splitted
-
-
-    # Abspeichern gewisser meta-daten im top_dic
-    top_dic["settings"].update({"processed": True})
-    top_dic["settings"].update({"model": "mallet"})
-    top_dic["settings"].update({"topics": topics})
-    top_dic["settings"].update({"coherence": coherence_ldamallet})
-    top_dic["settings"].update({"average_weight": average_weight_mallet})
-    top_dic["settings"].update({"min_weight": min_weight_mallet})
-    top_dic["settings"].update({"max_weight": max_weight_mallet})
-
-
-
     print('\nCoherence Score: ', coherence_ldamallet)
 
     print('Minimales Topic-Weight Mallet: ' + str(min_weight_mallet))
@@ -296,7 +246,7 @@ def topic_training_mallet_new(corpus_dictionary, name_dataset, user, topics, mal
     # out.write('Maximales Topic-Weight Gensim: ' + str(max_weight_mallet) + '\n')
     # out.close()
 
-    return top_dic
+    return lda_model_mallet, doc_tops_mallet, topwords_mallet
 
 
 #Es brauch keine unterscheidung mehr zwischen gensim und mallet, bei der Ausgabe der Topics.
