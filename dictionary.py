@@ -69,7 +69,7 @@ class Dictionary(utils.SaveLoad, Mapping):
         --------
         .. sourcecode:: pycon
 
-            >>> from gensim.corpora import Dictionary
+            >>> from mallet_wrapper.corpora import Dictionary
             >>>
             >>> texts = [['human', 'interface', 'computer']]
             >>> dct = Dictionary(texts)  # initialize a Dictionary
