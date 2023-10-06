@@ -151,7 +151,7 @@ def topic_training_gensim(corpus_dictionary, name_dataset, user, topics, passes_
     return top_dic
 
 
-def topic_training_mallet_new(corpus_dictionary, name_dataset, user, topics, mallet_path, chunking=True, optimize_interval_mallet=500, iterations_mallet=5000, random_seed_mallet=100):
+def topic_training_mallet_new(dataset, name_dataset, user, topics, mallet_path, chunking=True, optimize_interval_mallet=500, iterations_mallet=5000, random_seed_mallet=100):
     import mallet_wrapper
     from mallet_wrapper.dictionary import Dictionary
     from mallet_wrapper import coherencemodel
@@ -166,11 +166,11 @@ def topic_training_mallet_new(corpus_dictionary, name_dataset, user, topics, mal
 
     import warnings
 
-    id2word = corpora.Dictionary(dataset)
+    id2word = Dictionary(dataset)
 
     corpus = [id2word.doc2bow(text) for text in dataset]
 
-    lda_model_mallet = gensim.models.wrappers.ldamallet.LdaMallet(mallet_path, corpus=corpus, id2word=id2word,
+    lda_model_mallet = mallet_wrapper.LdaMallet(mallet_path, corpus=corpus, id2word=id2word,
                                                                   num_topics=topics, iterations=iterations_mallet,
                                                                   optimize_interval=optimize_interval_mallet,
                                                                   random_seed=random_seed_mallet)
