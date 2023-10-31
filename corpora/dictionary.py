@@ -85,8 +85,7 @@ class Dictionary(utils.SaveLoad, Mapping):
         self.num_pos = 0
         self.num_nnz = 0
 
-        if documents is not None:
-            self.add_documents(documents, prune_at=prune_at)
+
 
     def __getitem__(self, tokenid):
         """Get the string token that corresponds to `tokenid`.
