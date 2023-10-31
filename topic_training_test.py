@@ -154,6 +154,7 @@ def topic_training_gensim(corpus_dictionary, name_dataset, user, topics, passes_
 def topic_training_mallet_new(dataset, name_dataset, user, topics, mallet_path, chunking=True, optimize_interval_mallet=500, iterations_mallet=5000, random_seed_mallet=100):
     import mallet_wrapper
     from mallet_wrapper.coherencemodel import CoherenceModel
+    from mallet_wrapper.ldamallet import LdaMallet
     import mallet_wrapper.corpora as corpora
     from datetime import datetime
 
@@ -162,7 +163,7 @@ def topic_training_mallet_new(dataset, name_dataset, user, topics, mallet_path, 
 
     corpus = [id2word.doc2bow(text) for text in dataset]
 
-    lda_model_mallet = mallet_wrapper.LdaMallet(mallet_path, corpus=corpus, id2word=id2word,
+    lda_model_mallet = LdaMallet(mallet_path, corpus=corpus, id2word=id2word,
                                                                   num_topics=topics, iterations=iterations_mallet,
                                                                   optimize_interval=optimize_interval_mallet,
                                                                   random_seed=random_seed_mallet)
