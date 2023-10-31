@@ -175,7 +175,7 @@ from numpy import dot, float32 as REAL, memmap as np_memmap, \
 import numpy as np
 
 from mallet_wrapper import utils, matutils  # utility fnc for pickling, common scipy operations etc
-from mallet_wrapper.dictionary import Dictionary
+from mallet_wrapper.corpora import Dictionary
 from six import string_types, integer_types
 from six.moves import zip, range
 from scipy import stats
