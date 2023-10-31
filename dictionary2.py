@@ -18,7 +18,7 @@ import logging
 import itertools
 
 from mallet_wrapper import utils
-from mallet_wrapper.dictionary2 import *
+
 
 from six import PY3, iteritems, iterkeys, itervalues, string_types
 from six.moves import zip, range
