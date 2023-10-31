@@ -96,7 +96,7 @@ from numpy import dot, zeros, dtype, float32 as REAL,\
 import numpy as np
 
 from mallet_wrapper import utils, matutils  # utility fnc for pickling, common scipy operations etc
-from mallet_wrapper.dictionary import Dictionary
+from mallet_wrapper.corpora import Dictionary
 from six import string_types, iteritems
 from six.moves import range
 from scipy import stats
