@@ -16,7 +16,9 @@ except ImportError:
 import sys
 import logging
 import itertools
+
 from mallet_wrapper import utils
+
 from six import PY3, iteritems, iterkeys, itervalues, string_types
 from six.moves import zip, range
 
@@ -67,7 +69,7 @@ class Dictionary(utils.SaveLoad, Mapping):
         --------
         .. sourcecode:: pycon
 
-            >>> from mallet_wrapper.corpora import Dictionary
+            >>> from gensim.corpora import Dictionary
             >>>
             >>> texts = [['human', 'interface', 'computer']]
             >>> dct = Dictionary(texts)  # initialize a Dictionary
@@ -188,7 +190,7 @@ class Dictionary(utils.SaveLoad, Mapping):
         --------
         .. sourcecode:: pycon
 
-            >>> from mallet_wrapper.corpora import Dictionary
+            >>> from gensim.corpora import Dictionary
             >>>
             >>> corpus = ["máma mele maso".split(), "ema má máma".split()]
             >>> dct = Dictionary(corpus)
@@ -345,7 +347,7 @@ class Dictionary(utils.SaveLoad, Mapping):
         --------
         .. sourcecode:: pycon
 
-            >>> from mallet_wrapper.corpora import Dictionary
+            >>> from gensim.corpora import Dictionary
             >>>
             >>> corpus = [["máma", "mele", "maso"], ["ema", "má", "máma"]]
             >>> dct = Dictionary(corpus)
@@ -397,7 +399,7 @@ class Dictionary(utils.SaveLoad, Mapping):
         --------
         .. sourcecode:: pycon
 
-            >>> from mallet_wrapper.corpora import Dictionary
+            >>> from gensim.corpora import Dictionary
             >>>
             >>> corpus = [["máma", "mele", "maso"], ["ema", "má", "máma"]]
             >>> dct = Dictionary(corpus)
@@ -727,7 +729,7 @@ class Dictionary(utils.SaveLoad, Mapping):
         --------
         .. sourcecode:: pycon
 
-            >>> from mallet_wrapper.corpora import Dictionary
+            >>> from gensim.corpora import Dictionary
             >>>
             >>> corpus = [[(1, 1.0)], [], [(0, 5.0), (2, 1.0)], []]
             >>> dct = Dictionary.from_corpus(corpus)
