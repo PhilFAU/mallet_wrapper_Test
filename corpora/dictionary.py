@@ -16,10 +16,7 @@ except ImportError:
 import sys
 import logging
 import itertools
-
 from mallet_wrapper import utils
-from mallet_wrapper.add_documents import add_documents
-
 from six import PY3, iteritems, iterkeys, itervalues, string_types
 from six.moves import zip, range
 
@@ -88,8 +85,8 @@ class Dictionary(utils.SaveLoad, Mapping):
         self.num_pos = 0
         self.num_nnz = 0
 
-        # if documents is not None:
-        #     self.add_documents(documents, prune_at=prune_at)
+        if documents is not None:
+            self.add_documents(documents, prune_at=prune_at)
 
     def __getitem__(self, tokenid):
         """Get the string token that corresponds to `tokenid`.
@@ -348,7 +345,7 @@ class Dictionary(utils.SaveLoad, Mapping):
         --------
         .. sourcecode:: pycon
 
-            >>> from gensim.corpora import Dictionary
+            >>> from mallet_wrapper.corpora import Dictionary
             >>>
             >>> corpus = [["máma", "mele", "maso"], ["ema", "má", "máma"]]
             >>> dct = Dictionary(corpus)
@@ -400,7 +397,7 @@ class Dictionary(utils.SaveLoad, Mapping):
         --------
         .. sourcecode:: pycon
 
-            >>> from gensim.corpora import Dictionary
+            >>> from mallet_wrapper.corpora import Dictionary
             >>>
             >>> corpus = [["máma", "mele", "maso"], ["ema", "má", "máma"]]
             >>> dct = Dictionary(corpus)
@@ -730,7 +727,7 @@ class Dictionary(utils.SaveLoad, Mapping):
         --------
         .. sourcecode:: pycon
 
-            >>> from gensim.corpora import Dictionary
+            >>> from mallet_wrapper.corpora import Dictionary
             >>>
             >>> corpus = [[(1, 1.0)], [], [(0, 5.0), (2, 1.0)], []]
             >>> dct = Dictionary.from_corpus(corpus)
