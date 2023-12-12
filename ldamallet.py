@@ -55,8 +55,6 @@ from itertools import chain
 
 import numpy
 
-
-from mallet_wrapper import ldamodel
 from mallet_wrapper.utils import check_output, revdict
 
 from mallet_wrapper import utils, matutils, basemodel
