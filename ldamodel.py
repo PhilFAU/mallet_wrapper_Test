@@ -98,7 +98,7 @@ from collections import defaultdict
 
 from mallet_wrapper import interfaces, utils, matutils
 from mallet_wrapper.matutils import (kullback_leibler, hellinger, jaccard_distance, jensen_shannon,
-    dirichlet_expectation, logsumexp, mean_absolute_difference)
+                                     dirichlet_expectation, logsumexp, mean_absolute_difference)
 from mallet_wrapper import basemodel, coherencemodel
 # from gensim.models.callbacks import Callback
 

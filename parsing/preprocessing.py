@@ -10,7 +10,7 @@ Examples
 
 .. sourcecode:: pycon
 
-    >>> from gensim.parsing.preprocessing import remove_stopwords, preprocess_string
+    >>> from mallet_wrapper.parsing.preprocessing import remove_stopwords, preprocess_string
     >>> remove_stopwords("Better late than never, but better never late.")
     u'Better late never, better late.'
     >>>

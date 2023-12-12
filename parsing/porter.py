@@ -12,7 +12,7 @@ Examples
 
 .. sourcecode:: pycon
 
-    >>> from gensim.parsing.porter import PorterStemmer
+    >>> from mallet_wrapper.parsing.porter import PorterStemmer
     >>>
     >>> p = PorterStemmer()
     >>> p.stem("apple")
@@ -64,7 +64,7 @@ class PorterStemmer:
         --------
         .. sourcecode:: pycon
 
-            >>> from gensim.parsing.porter import PorterStemmer
+            >>> from mallet_wrapper.parsing.porter import PorterStemmer
             >>> p = PorterStemmer()
             >>> p.b = "hi"
             >>> p._cons(1)
